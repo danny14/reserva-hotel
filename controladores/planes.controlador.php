@@ -1,20 +1,19 @@
 <?php
+
 Class ControladorPlanes{
 
-	/*======================================
-	=            Mostrar Banner            =
-	======================================*/
-	static public function ctrShowPlanes(){
+	/*=============================================
+	Mostrar Planes
+	=============================================*/
 
-		$table = "planes";
+	static public function ctrMostrarPlanes(){
 
-		$answer = ModeloPlanes::mdlShowPlanes($table);
+		$tabla = "planes";
 
-		return $answer;
+		$respuesta = ModeloPlanes::mdlMostrarPlanes($tabla);
+
+		return $respuesta;
+
 	}
-	
-	
-	/*=====  End of Mostrar Banner  ======*/
-	
+
 }
-?>

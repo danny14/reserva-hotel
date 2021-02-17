@@ -1,6 +1,6 @@
 <?php
 
-$recorrido = ControladorRecorrido::ctrShowRecorrido();
+$recorrido = ControladorRecorrido::ctrMostrarRecorrido();
 
 ?>
 
@@ -21,36 +21,37 @@ RECORRIDO POR EL PUEBLO
 					<ul class="slide-area">
 
 						<?php foreach ($recorrido as $key => $value): ?>
+
 						<li>
 						
 							<div class="grid-container pt-4 pb-1 pb-lg-3 px-0 px-lg-5">
 				
 								<div class="grid-item">
 									
-									<img src="<?php echo $servidor.$value['foto_peq']?>" class="img-fluid" width="100%">
+									<img src="<?php echo $servidor.$value["foto_peq"]; ?>" class="img-fluid" width="100%">
 
 								</div>
 
 								<div class="grid-item">
 									
-									<h1 class="mt-4 mb-0 my-lg-2"><?php echo $value['titulo'] ?></h1>
+									<h1 class="mt-4 mb-0 my-lg-2"><?php echo $value["titulo"]; ?></h1>
 
-									<p class="small p-3"><?php echo $value['descripcion'] ?></p>
+									<p class="small p-3"><?php echo $value["descripcion"]; ?></p>
 
 								</div>
 
 								<div class="grid-item d-none d-lg-block">
 									
-									<img src="<?php echo $servidor.$value['foto_grande']?>" class="img-fluid" width="100%">
+									<img src="<?php echo $servidor.$value["foto_grande"]; ?>" class="img-fluid" width="100%">
 
 								</div>
 								
 							</div>
 
-						</li>							
+						</li>
 							
 						<?php endforeach ?>
-
+						
 					</ul>
 
 				</div>

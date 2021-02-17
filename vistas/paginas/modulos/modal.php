@@ -20,7 +20,7 @@ VENTANA MODAL PLANES
     			<p class="py-3"></p>
        			
        			<div class="text-center">
-        			<a href="#habitaciones" class="btn btn-primary text-center btnModalPlan" data-dismiss="modal">Separa tu habitación</a>
+        			<a href="#habitaciones" class="btn btn-primary text-center  btnModalPlan" data-dismiss="modal">Separa tu habitación</a>
         		</div>
 
       		</div>

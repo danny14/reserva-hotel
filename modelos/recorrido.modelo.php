@@ -1,27 +1,25 @@
 <?php
-	require_once "conexion.php";
 
-	Class ModeloRecorrido{
+require_once "conexion.php";
 
-		/*======================================
-		=            Mostrar Banner            =
-		======================================*/
-		static public function mdlShowRecorrido($table){
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+Class ModeloRecorrido{
 
-			$stmt->execute();
+	/*=============================================
+	mostrar Recorrido
+	=============================================*/
+	
+	static public function mdlMostrarRecorrido($tabla){
 
-			return $stmt->fetchAll();
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt->close();
+		$stmt -> execute();
 
-			$stmt = null;
+		return $stmt -> fetchAll();
 
-		}
-		
-		
-		/*=====  End of Mostrar Banner  ======*/
-		
+		$stmt -> close();
 
-		}
-?>
+		$stmt = null;
+
+	}
+
+}

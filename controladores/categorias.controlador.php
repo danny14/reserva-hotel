@@ -1,20 +1,19 @@
 <?php
+
 Class ControladorCategorias{
 
-	/*======================================
-	=            Mostrar Banner            =
-	======================================*/
-	static public function ctrShowCategorias(){
+	/*=============================================
+	Mostrar Categorias
+	=============================================*/
 
-		$table = "categorias";
+	static public function ctrMostrarCategorias(){
 
-		$answer = ModeloCategorias::mdlShowCategorias($table);
+		$tabla = "categorias";
 
-		return $answer;
+		$respuesta = ModeloCategorias::mdlMostrarCategorias($tabla);
+
+		return $respuesta;
+
 	}
-	
-	
-	/*=====  End of Mostrar Banner  ======*/
-	
+
 }
-?>

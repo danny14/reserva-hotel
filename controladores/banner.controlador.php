@@ -1,20 +1,19 @@
 <?php
+
 Class ControladorBanner{
 
-	/*======================================
-	=            Mostrar Banner            =
-	======================================*/
-	static public function ctrShowBanner(){
+	/*=============================================
+	Mostrar banner
+	=============================================*/
 
-		$table = "banner";
+	static public function ctrMostrarBanner(){
 
-		$answer = ModeloBanner::mdlShowBanner($table);
+		$tabla = "banner";
 
-		return $answer;
+		$respuesta = ModeloBanner::mdlMostrarBanner($tabla);
+
+		return $respuesta;
+
 	}
-	
-	
-	/*=====  End of Mostrar Banner  ======*/
-	
+
 }
-?>

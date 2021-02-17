@@ -1,20 +1,19 @@
 <?php
+
 Class ControladorRecorrido{
 
-	/*======================================
-	=            Mostrar Banner            =
-	======================================*/
-	static public function ctrShowRecorrido(){
+	/*=============================================
+	Mostrar Recorrido
+	=============================================*/
 
-		$table = "recorrido";
+	static public function ctrMostrarRecorrido(){
 
-		$answer = ModeloRecorrido::mdlShowRecorrido($table);
+		$tabla = "recorrido";
 
-		return $answer;
+		$respuesta = ModeloRecorrido::mdlMostrarRecorrido($tabla);
+
+		return $respuesta;
+
 	}
-	
-	
-	/*=====  End of Mostrar Banner  ======*/
-	
+
 }
-?>

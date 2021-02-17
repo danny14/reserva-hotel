@@ -1,3 +1,13 @@
+<?php
+
+$valor = $_GET["pagina"];
+
+$habitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
+// echo '<pre class="bg-white">'; print_r($habitaciones); echo '</pre>';
+
+?>
+
+
 <!--=====================================
 INFO HABITACIÓN
 ======================================-->
@@ -24,44 +34,26 @@ INFO HABITACIÓN
 						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
 
-					<h2 class="float-right text-white px-3 categoria">SUITE</h2>
+					<h2 class="float-right text-white px-3 categoria text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?></h2>
 
 					<div class="clearfix"></div>
 
 					<ul class="nav nav-justified mt-lg-4">	
 
+						<?php foreach ($habitaciones as $key => $value): ?>
+
 						<li class="nav-item">
 
-							<a class="nav-link text-white active" href="#">
-								<i class="fas fa-chevron-right"></i> Oriental
+							<a class="nav-link text-white" orden="<?php echo $key; ?>" ruta="<?php echo $_GET["pagina"]; ?>" href="#">
+								 <?php echo $value["estilo"]; ?>
 							</a>
 
 						</li>
+							
+						<?php endforeach ?>
 
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">Moderna</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">Africana</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">Clásica</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link text-white" href="#">Retro</a>
-
-						</li>
-
+						
+	
 					</ul>
 
 				</div>
@@ -78,23 +70,22 @@ INFO HABITACIÓN
 			            
 			            <ul class="slide-area">
 
-				            <li>	
+			            <?php
 
-								<img src="img/oriental.png" class="img-fluid">
+			            $galeria = json_decode($habitaciones[0]["galeria"], true);
+			           
+			            ?>
+
+			            <?php foreach ($galeria as $key => $value): ?>
+			            	
+		            	  	<li>	
+
+								<img src="<?php echo $servidor.$value; ?>" class="img-fluid">
 
 							</li>
 
-							<li>	
 
-								<img src="img/oriental.png" class="img-fluid">
-
-							</li>
-
-							<li>	
-
-								<img src="img/oriental.png" class="img-fluid">
-
-							</li>							
+			            <?php endforeach ?>
 
 						</ul>
 
@@ -120,7 +111,7 @@ INFO HABITACIÓN
 
 				<section class="mb-3 my-lg-3 videoHabitaciones d-none">
 					
-					<iframe width="100%" height="380" src="https://www.youtube.com/embed/JTu790_yyRc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe width="100%" height="380" src="https://www.youtube.com/embed/<?php  echo $habitaciones[0]["video"]; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				
 				</section>
 
@@ -128,7 +119,7 @@ INFO HABITACIÓN
 
 				<section class="mb-3 my-lg-3 360Habitaciones d-none">
 
-					<div id="myPano" class="pano">
+					<div id="myPano" class="pano" back="<?php  echo $servidor.$habitaciones[0]["recorrido_virtual"]; ?>">
 
 						<div class="controls">
 							<a href="#" class="left">&laquo;</a>
@@ -145,7 +136,7 @@ INFO HABITACIÓN
 
 				<div class="descripcionHabitacion px-3">
 					
-					<h1 class="colorTitulos float-left">ORIENTAL SUITE</h1>
+					<h1 class="colorTitulos float-left"><?php echo $habitaciones[0]["estilo"]." ".$habitaciones[0]["tipo"] ?></h1>
 
 					<div class="float-right pt-2">
 						
@@ -159,31 +150,11 @@ INFO HABITACIÓN
 
 					<div class="clearfix mb-4"></div>	
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit, quia blanditiis fugiat nam libero possimus totam modi sint autem repellat fugit dicta est pariatur? Ut aut vel ad sapiente. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, reprehenderit! Deserunt laborum dolorum deleniti molestiae quae vitae animi ratione nihil, minus ut quibusdam incidunt voluptate eos sed id repudiandae ex.
-					</p>	
+					<div class="d-habitacion">
+						
+						<?php echo $habitaciones[0]["descripcion_h"]; ?>
 
-					<p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit, quia blanditiis fugiat nam libero possimus totam modi sint autem repellat fugit dicta est pariatur? Ut aut vel ad sapiente. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, reprehenderit! Deserunt laborum dolorum deleniti molestiae quae vitae animi ratione nihil, minus ut quibusdam incidunt voluptate eos sed id repudiandae ex.
-					</p>
-
-					<br>
-
-					<h3>PLAN CONTINENTAL</h3>
-
-					<p>(Precio x pareja 1 día 1 noche, incluye: desayuno)<br>
-					Temporada Baja:$300 USD<br>
-					Temporada Alta $350 USD</p>	
-
-					<br>
-
-					<h3>PLAN AMERICANO</h3>
-
-					<p>(Precio x pareja 1 día 1 noche, incluye: cena, desayuno, almuerzo)<br>
-					Temporada Baja:$380 USD<br>
-					Temporada Alta $420 USD</p>
-					
-					<br>
-
-					<p>Hora de entrada (Check in) 3:00 pm | Hora de salida (Check out) 1:00 pm</p>
+					</div>
 
 					<div class="container">
 
@@ -235,118 +206,73 @@ INFO HABITACIÓN
 
 			<div class="col-12 col-lg-4 colDerHabitaciones">
 
-				<h2 class="colorTitulos">SUITE INCLUYE:</h2>
+				<h2 class="colorTitulos text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?> INCLUYE:</h2>
 				
 				<ul>
-					<li>
-						<h5>
-							<i class="fas fa-bed w-25 colorTitulos"></i> 
-							<span class="text-dark small">cama 2 x 2</span>
-						</h5>
-					</li>
+
+				<?php
+
+					$incluye = json_decode($habitaciones[0]["incluye"], true);
+
+				?>
+
+				<?php foreach ($incluye as $key => $value): ?>
 
 					<li>
 						<h5>
-							<i class="fas fa-tv w-25 colorTitulos"></i> 
-							<span class="text-dark small">TV de 42"</span>
+							<i class="<?php echo $value["icono"]; ?> w-25 colorTitulos"></i> 
+							<span class="text-dark small"><?php echo $value["item"]; ?></span>
 						</h5>
 					</li>
+					
+				<?php endforeach ?>
 
-					<li>
-						<h5>
-							<i class="fas fa-tint w-25 colorTitulos"></i> 
-							<span class="text-dark small">Agua caliente</span>
-						</h5>
-					</li>
-
-					<li>
-						<h5>
-							<i class="fas fa-water w-25 colorTitulos"></i> 
-							<span class="text-dark small">Jacuzzi</span>
-						</h5>
-					</li>
-
-					<li>
-						<h5>
-							<i class="fas fa-toilet w-25 colorTitulos"></i> 
-							<span class="text-dark small">Baño privado</span>
-						</h5>
-					</li>
-
-					<li>
-						<h5>
-							<i class="fas fa-couch w-25 colorTitulos"></i>
-							<span class="text-dark small"> Sofá</span>
-						</h5>
-					</li>
-
-					<li>
-						<h5>
-							<i class="far fa-image w-25 colorTitulos"></i> 
-							<span class="text-dark small">Balcón</span>
-						</h5>
-					</li>
-
-
-					<li>
-						<h5>
-							<i class="fas fa-wifi w-25 colorTitulos"></i> 
-							<span class="text-dark small">Servicio Wifi</span>
-						</h5>
-					</li>
 				</ul>
 
 				<!-- HABITACIONES -->
 
-				<div class="habitaciones">
+				<div class="habitaciones" id="habitaciones">
 
 					<div class="container">
 
 						<div class="row">
 
-							<div class="col-12 pb-3 px-0 px-lg-3">
 
-								<a href="<?php echo $ruta;  ?>habitaciones">
-									
-									<figure class="text-center">
-										
-										<img src="img/habitacion02.png" class="img-fluid" width="100%">
+						<?php
 
-										<p class="small py-4 mb-0">Lorem ipsum dolor sit amet, consectetur</p>
+							$categorias = ControladorCategorias::ctrMostrarCategorias();
 
-										<h3 class="py-2 text-gray-dark mb-0">DESDE $200 USD</h3>
+						?>
 
-										<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2" style=""></i></h5>
+						<?php foreach ($categorias as $key => $value): ?>
 
-										<h1 class="text-white p-3 mx-auto w-50 lead" style="background:#197DB1">ESPECIAL</h1>
-
-									</figure>
-
-								</a>
-
-							</div>
+							<?php if ($_GET["pagina"] != $value["ruta"]): ?>
 
 							<div class="col-12 pb-3 px-0 px-lg-3">
 
-								<a href="<?php echo $ruta;  ?>habitaciones">
-									
+									<a href="<?php echo $ruta.$value["ruta"];  ?>">
+					
 									<figure class="text-center">
 										
-										<img src="img/habitacion03.png" class="img-fluid" width="100%">
+										<img src="<?php echo $servidor.$value["img"]; ?>" class="img-fluid" width="100%">
 
-										<p class="small py-4 mb-0">Lorem ipsum dolor sit amet, consectetur</p>
+										<p class="small py-4 mb-0"><?php echo $value["descripcion"]; ?></p>
 
-										<h3 class="py-2 text-gray-dark mb-0">DESDE $150 USD</h3>
+										<h3 class="py-2 text-gray-dark mb-0">DESDE $<?php echo number_format($value["continental_baja"]); ?> COP</h3>
 
 										<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2"></i></h5>
-
-										<h1 class="text-white p-3 mx-auto w-50 lead" style="background:#2F7D84">STANDAR</h1>
+										
+										<h1 class="text-white p-3 mx-auto w-50 lead text-uppercase" style="background:<?php echo $value["color"]; ?>"><?php echo $value["tipo"]; ?></h1>
 
 									</figure>
 
 								</a>
 
 							</div>
+
+							<?php endif ?>		
+							
+						<?php endforeach ?>						
 
 						</div>
 

@@ -1,27 +1,25 @@
 <?php
-	require_once "conexion.php";
 
-	Class ModeloPlanes{
+require_once "conexion.php";
 
-		/*======================================
-		=            Mostrar Banner            =
-		======================================*/
-		static public function mdlShowPlanes($table){
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+Class ModeloPlanes{
 
-			$stmt->execute();
+	/*=============================================
+	mostrar Planes
+	=============================================*/
+	
+	static public function mdlMostrarPlanes($tabla){
 
-			return $stmt->fetchAll();
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt->close();
+		$stmt -> execute();
 
-			$stmt = null;
+		return $stmt -> fetchAll();
 
-		}
-		
-		
-		/*=====  End of Mostrar Banner  ======*/
-		
+		$stmt -> close();
 
-		}
-?>
+		$stmt = null;
+
+	}
+
+}

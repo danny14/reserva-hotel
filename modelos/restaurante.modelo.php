@@ -2,13 +2,13 @@
 
 require_once "conexion.php";
 
-Class ModeloBanner{
+Class ModeloRestaurante{
 
 	/*=============================================
-	mostrar banner
+	mostrar Restaurante
 	=============================================*/
 	
-	static public function mdlMostrarBanner($tabla){
+	static public function mdlMostrarRestaurante($tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 

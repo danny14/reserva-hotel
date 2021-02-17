@@ -27,7 +27,6 @@ if(window.matchMedia("(max-width:768px)").matches){
 
 	})
 
-
 }else{
 
 	$(".botonMenu").click(function(){
@@ -57,16 +56,18 @@ if(window.matchMedia("(max-width:768px)").matches){
 }
 
 
-	$(".btnModalPlan").click(function(e){
+$(".btnModalPlan").click(function(e){
 
-		e.preventDefault();
+	e.preventDefault();
 
-		var vinculo = $(this).attr("href");
-		
-		$("html, body").animate({
+	var vinculo = $(this).attr("href");
+	
+	$("html, body").animate({
 
-			scrollTop: $(vinculo).offset().top - 60
+		scrollTop: $(vinculo).offset().top - 60
 
-		}, 1000, "easeInOutBack")
+	}, 1000, "easeInOutBack")
 
-	})
+})
+
+

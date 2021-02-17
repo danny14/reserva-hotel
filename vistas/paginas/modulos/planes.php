@@ -1,6 +1,6 @@
 <?php
 
-$planes = ControladorPlanes::ctrShowPlanes();
+$planes = ControladorPlanes::ctrMostrarPlanes();
 
 ?>
 
@@ -22,22 +22,22 @@ PLANES
 
 			</div>
 
-
 			<?php foreach ($planes as $key => $value): ?>
+
 			<div class="grid-item d-none d-lg-block" data-toggle="modal" data-target="#modalPlanes">
 				
 				<figure class="text-center">
 					
-					<h1 descripcion="<?php echo $value["descripcion"] ?>" class="text-uppercase">PLAN <?php echo $value["tipo"] ?></h1>
+					<h1 descripcion="<?php echo $value["descripcion"]; ?>" class="text-uppercase">PLAN <?php echo $value["tipo"]; ?></h1>
 
 				</figure>
 
-				<img src="<?php echo $servidor.$value["img"] ?>" class="img-fluid" width="100%">
+				<img src="<?php echo $servidor.$value["img"]; ?>" class="img-fluid" width="100%">
 
 
 			</div>
-
-			<?php endforeach ?>
+				
+			<?php endforeach ?>	
 			
 		</div>
 

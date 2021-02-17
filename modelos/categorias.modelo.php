@@ -1,27 +1,25 @@
 <?php
-	require_once "conexion.php";
 
-	Class ModeloCategorias{
+require_once "conexion.php";
 
-		/*======================================
-		=            Mostrar Banner            =
-		======================================*/
-		static public function mdlShowCategorias($table){
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $table");
+Class ModeloCategorias{
 
-			$stmt->execute();
+	/*=============================================
+	mostrar Categorias
+	=============================================*/
+	
+	static public function mdlMostrarCategorias($tabla){
 
-			return $stmt->fetchAll();
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-			$stmt->close();
+		$stmt -> execute();
 
-			$stmt = null;
+		return $stmt -> fetchAll();
 
-		}
-		
-		
-		/*=====  End of Mostrar Banner  ======*/
-		
+		$stmt -> close();
 
-		}
-?>
+		$stmt = null;
+
+	}
+
+}
